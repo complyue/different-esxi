@@ -1,0 +1,11 @@
+ESXi 4.x/5.x/6.0
+
+From the Direct Console User Interface (DCUI) screen, press F12 to view the shutdown-related options for the ESXi host.
+Press F2 to shut down.
+Press F11 to reboot.
+
+From Local or Remote Tech Support Mode, or from an SSH session, run one of these commands:
+Run the reboot command to restart the host.
+Run the poweroff command to shut down the host.
+
+Note: In ESXi 5.x/6.0, no console output will be displayed on the screen when using the reboot or poweroff commands. After a short period of time, the host will reboot or shut down.

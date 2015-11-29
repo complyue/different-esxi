@@ -1,0 +1,22 @@
+#!/bin/sh
+
+PORT=777
+
+# INSTALL: set a proper port above, and run this script once as root to 
+# persist this script to start at each boot
+SCRIPT=$(readlink -f "$0")
+if ! grep -q "${SCRIPT}" /etc/rc.local.d/local.sh; then
+  echo 'nohup ' "${SCRIPT}" ' 1>/dev/null 2>&1 &' >> /etc/rc.local.d/local.sh
+  exit 0
+fi
+
+# get management ip, assuming vmk0 is the one, change as necessary
+HOST=$(esxcli network ip interface ipv4 get | awk '/vmk0/{print $2}')
+
+#prepare awk script
+AWKS='BEGIN{print "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body>"} NR>1{print "<a href=\"vmrc://@'${HOST}':443/?moid=" $1 "\">" $2 "</a><br/>"} END{print "</body></html>"}'
+echo ${AWKS}
+# daemon loop:
+while true; do
+  vim-cmd vmsvc/getallvms | awk "${AWKS}" | nc -l ${PORT}
+done

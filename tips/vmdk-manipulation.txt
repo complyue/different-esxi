@@ -1,0 +1,11 @@
+
+* convert vmdk for ESXi:
+
+vmkfstools -i HostedVirtualDisk -d thin ESXVirtualDisk
+
+
+* create vmdk in ESXi:
+
+vmkfstools -c 40G -d thin osx1010.vmdk
+
+
