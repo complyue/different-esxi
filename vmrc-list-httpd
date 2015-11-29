@@ -15,7 +15,6 @@ HOST=$(esxcli network ip interface ipv4 get | awk '/vmk0/{print $2}')
 
 #prepare awk script
 AWKS='BEGIN{print "HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n<html><body>"} NR>1{print "<a href=\"vmrc://@'${HOST}':443/?moid=" $1 "\">" $2 "</a><br/>"} END{print "</body></html>"}'
-echo ${AWKS}
 # daemon loop:
 while true; do
   vim-cmd vmsvc/getallvms | awk "${AWKS}" | nc -l ${PORT}
