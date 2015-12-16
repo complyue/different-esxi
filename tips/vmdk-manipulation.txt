@@ -9,3 +9,15 @@ vmkfstools -i HostedVirtualDisk -d thin ESXVirtualDisk
 vmkfstools -c 40G -d thin osx1010.vmdk
 
 
+* check device trim/unmap support
+
+esxcli storage core device vaai status get
+
+
+* reclaim ssd
+
+vmkfstools -y /vmfs/volumes/ssds1
+Try to unmap 80289 blocks in units of 200 blocks from volume /vmfs/volumes/ssds1.
+Async unmapped 80277 blocks from volume /vmfs/volumes/ssds1.
+
+
