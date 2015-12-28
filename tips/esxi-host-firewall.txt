@@ -1,0 +1,5 @@
+
+* ESXi host firewall
+
+esxcli network firewall set -d true -e true
+
