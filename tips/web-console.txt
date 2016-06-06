@@ -1,0 +1,8 @@
+
+ESXi host webconsole (html 5 console)
+
+# ESXi host console url
+https://192.168.11.20/ui/
+
+# vm console url
+https://192.168.11.20/ui/#/console/7
