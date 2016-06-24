@@ -1,0 +1,12 @@
+
+* ESXi clonable USB installation:
+
+
+** Let management network NIC use hardware MAC address, ESXi uses generated one on installation by default,
+** where clones will conflict with eachothers
+
+[root@localhost:/bin] esxcfg-advcfg -g /Net/FollowHardwareMac
+Value of FollowHardwareMac is 0
+[root@localhost:/bin] esxcfg-advcfg -s 1 /Net/FollowHardwareMac
+Value of FollowHardwareMac is 1
+
